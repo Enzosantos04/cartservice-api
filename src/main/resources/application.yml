@@ -15,3 +15,8 @@ spring:
   cache:
     redis:
       time-to-live: 6000
+
+
+cart:
+  client:
+     dummy: https://dummyjson.com
