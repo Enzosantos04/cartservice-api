@@ -1,4 +1,4 @@
-package enzosdev.cartservice.controller;
+package enzosdev.cartservice.controller.request;
 
-public record ProductRequest() {
+public record ProductRequest(Long id, Integer quantity) {
 }
