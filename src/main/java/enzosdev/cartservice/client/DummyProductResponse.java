@@ -1,4 +1,7 @@
 package enzosdev.cartservice.client;
 
-public record DummyProductResponse() {
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+public record DummyProductResponse(Long id, String title, BigDecimal price) implements Serializable {
 }
