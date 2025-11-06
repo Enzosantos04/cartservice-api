@@ -1,6 +1,8 @@
 package enzosdev.cartservice.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import enzosdev.cartservice.enums.PaymentMethod;
 import enzosdev.cartservice.enums.Status;
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -22,6 +24,8 @@ public class Cart {
     private BigDecimal totalPrice;
     private List<Product> products;
     private Status status;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private PaymentMethod paymentMethod;
 
     public void calculateTotalPrice(){
         this.totalPrice = products.stream()
