@@ -52,7 +52,7 @@ public class CartService {
                 .orElseThrow(()-> new RuntimeException("Cart not found"));
     }
 
-    public Cart updateBasket(String cartId, CartRequest cartRequest){
+    public Cart updateCart(String cartId, CartRequest cartRequest){
         Cart savedCart =  getCartById(cartId);
         List<Product> products = getProducts(cartRequest);
         savedCart.setProducts(products);
@@ -68,7 +68,7 @@ public class CartService {
     }
 
 
-    public void deleteBasketById(String cartId){
+    public void deleteCartById(String cartId){
         Cart savedCart = getCartById(cartId);
         cartRepository.delete(savedCart);
     }
