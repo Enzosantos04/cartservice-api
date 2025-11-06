@@ -7,6 +7,8 @@ import enzosdev.cartservice.controller.request.PaymentRequest;
 import enzosdev.cartservice.entity.Cart;
 import enzosdev.cartservice.entity.Product;
 import enzosdev.cartservice.enums.Status;
+import enzosdev.cartservice.exceptions.BusinessException;
+import enzosdev.cartservice.exceptions.DataNotFoundException;
 import enzosdev.cartservice.repository.CartRepository;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +33,7 @@ public class CartService {
     public Cart createCart(CartRequest cartRequest){
         cartRepository.findByClientAndStatus(cartRequest.clientId(), Status.OPEN)
                 .ifPresent(cart -> {
-                    throw new RuntimeException("There is already an open basket for this client");
+                   throw new BusinessException("There is already an open basket for this client");
                 });
 
         List<Product> products = getProducts(cartRequest);
@@ -49,7 +51,7 @@ public class CartService {
 
     public Cart getCartById(String id){
         return cartRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Cart not found"));
+                .orElseThrow(()-> new DataNotFoundException("Cart not found"));
     }
 
     public Cart updateCart(String cartId, CartRequest cartRequest){
